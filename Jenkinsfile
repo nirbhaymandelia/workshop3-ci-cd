@@ -1,24 +1,40 @@
 pipeline{
-    agent any 
+    agent any
+    
     stages{
         stage('Installing NPM dependencies'){
+            agent {
+          docker {
+                image: 'node:12-slim'
+            }
+        } 
             steps {
-                sh 'export PATH=/usr/local/bin  npm install'
+                sh 'npm install'
             }
         }
          stage('Run Unit Test'){
+        agent {
+            docker {
+                image: 'node:12-slim'
+            }
+        } 
             steps {
-                sh 'export PATH=/usr/local/bin  npm run test'
+                sh 'npm run test'
             }
         }
         stage('Run Coverage Test'){
+            agent {
+            docker {
+                image: 'node:12-slim'
+            }
+        }
             steps {
-                sh '/usr/local/bin/npm run test:coverage'
+                sh 'npm run test:coverage'
             }
         }
         stage('Run Sonar Analysis'){
             steps {
-                sh '/usr/local/bin/npm run sonar'
+                sh 'npm run sonar'
             }
         }
     }
