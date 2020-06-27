@@ -13,7 +13,12 @@ pipeline{
         }
         stage('Run Coverage Test'){
             steps {
-                echo 'Coverage test'
+                echo 'npm run test:coverage'
+            }
+        }
+        stage('Run Sonar Analysis'){
+            steps {
+                echo 'npm run sonar'
             }
         }
     }
