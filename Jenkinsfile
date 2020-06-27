@@ -1,33 +1,25 @@
 pipeline{
-    agent any
-    
-    stages{
-        stage('Installing NPM dependencies'){
-            agent {
+     agent {
           docker {
                 image 'node:12-slim'
             }
         } 
+    
+    stages{
+        stage('Installing NPM dependencies'){
+           
             steps {
                 sh 'npm install'
             }
         }
          stage('Run Unit Test'){
-        agent {
-            docker {
-                image 'node:12-slim'
-            }
-        } 
+        
             steps {
                 sh 'npm run test'
             }
         }
         stage('Run Coverage Test'){
-            agent {
-            docker {
-                image 'node:12-slim'
-            }
-        }
+        
             steps {
                 sh 'npm run test:coverage'
             }
