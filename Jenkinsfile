@@ -5,7 +5,7 @@ pipeline{
         stage('Installing NPM dependencies'){
             agent {
           docker {
-                image: 'node:12-slim'
+                image 'node:12-slim'
             }
         } 
             steps {
@@ -15,7 +15,7 @@ pipeline{
          stage('Run Unit Test'){
         agent {
             docker {
-                image: 'node:12-slim'
+                image 'node:12-slim'
             }
         } 
             steps {
@@ -25,7 +25,7 @@ pipeline{
         stage('Run Coverage Test'){
             agent {
             docker {
-                image: 'node:12-slim'
+                image 'node:12-slim'
             }
         }
             steps {
